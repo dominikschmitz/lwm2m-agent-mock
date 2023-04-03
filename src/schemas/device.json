@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Device Settings",
+  "type": "object",
+  "required": ["endpointId"],
+  "properties": {
+    "endpointId": {
+      "title": "Endpoint client ID",
+      "type": "string"
+    }
+  }
+}
