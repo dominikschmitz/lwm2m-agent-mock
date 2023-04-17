@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Firmware settings",
+  "type": "object",
+  "properties": {
+    "lwm2mRequestTimeout": {
+      "title": "LWM2M request timeout",
+      "type": "number",
+			"description": "in milliseconds",
+			"examples": ["180000"],
+			"minimum": 0
+    },
+    "awakeTimeRegistrationParameter": {
+      "title": "Awake time registration parameter",
+      "description": "in milliseconds, 0 means device is always online",
+			"examples": ["0"],
+			"minimum": 0,
+			"type": "number"
+    },
+    "enableResourceLevelTimestamp": {
+      "title": "Use common timestamp resources 5518 and 6050 or object specific timestamp for object 6 reported by the device if available",
+      "type": "boolean",
+			"default": false
+    },
+    "genericUIRetainOldValuesIfError": {
+      "title": "Keep old values in the objects tab if an operation fails",
+      "type": "string"
+    },
+    "binaryDeliveryEncoding": {
+      "title": "Binary delivery encoding",
+      "default": "OPAQUE",
+			"type": "string",
+			"oneOf": [
+				{
+					"title": "OPAQUE",
+					"const": "OPAQUE"
+				},
+				{
+					"title": "TLV",
+					"const": "TLV"
+				}
+			]
+    },
+    "serializationFormat": {
+      "title": "Serialization Format",
+      "type": "string"
+    }
+  }
+}

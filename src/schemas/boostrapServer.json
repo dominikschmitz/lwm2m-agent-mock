@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "title": "Server",
+  "title": "Bootstrap Server",
   "properties": {
       "security": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -11,7 +11,7 @@
                     "type": "string",
                     "title": "Server public key"
                 },
-              "securityMode": {
+                "securityMode": {
                   "default": "NO_SEC",
                   "type": "string",
                   "title": "Security mode",
@@ -25,46 +25,10 @@
                       "const": "PSK"
                     }
                   ]
-              },
-                "lwm2mShortServerId": {
+                },
+                "boostrapShortServerId": {
                     "type": "number",
                     "title": "Short Server ID"
-                },
-                "registrationLifetime": {
-                    "type": "number",
-                    "title": "Registration lifetime"
-                },
-                "defaultMinimumPeriod": {
-                    "type": "number",
-                    "title": "Default Minimum Period"
-                },
-                "defaultMaximumPeriod": {
-                    "type": "number",
-                    "title": "Default Maximum Period"
-                },
-                "disableTimeout": {
-                    "title": "Disable timeout",
-                    "type": "boolean",
-                            "default": false
-                    },
-                "notificationIfDisabled": {
-                    "title": "Notification Storing When Disabled or Offline",
-                    "type": "boolean",
-                            "default": false
-                },
-                "bindingMode": {
-                  "type": "string",
-                  "title": "Binding mode",
-                  "oneOf": [
-                    {
-                      "title": "UDP",
-                      "const": "U"
-                    },
-                    {
-                      "title": "UDP with queue mode",
-                      "const": "UQ"
-                    }
-                  ]
                 }
           },
           "dependencies": {
@@ -86,22 +50,22 @@
                                   "const": "PSK",
                                   "type": "string"
                               },
-                              "publicKeyOrId": {
+                              "bootstrapId": {
                                   "type": "string",
-                                  "title": "PSK ID"
+                                  "title": "Bootstrap PSK ID"
                               },
-                              "secretKey": {
+                              "bootstrapKey": {
                                   "pattern": "^([a-fA-F0-9]{2})+$",
                                   "examples": [
                                       "0123456789abcdef"
                                   ],
                                   "type": "string",
-                                  "title": "Pre-shared key"
+                                  "title": "Bootstrap pre-shared key"
                               }
                           },
                           "required": [
-                              "publicKeyOrId",
-                              "secretKey"
+                              "bootstrapId",
+                              "bootstrapKey"
                           ]
                       }
                   ]
