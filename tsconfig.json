@@ -7,5 +7,6 @@
     "outDir": "dist",
     "sourceMap": true
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "hooks": [ "copy-files" ] 
 }
