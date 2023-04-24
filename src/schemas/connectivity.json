@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Connectivity",
+  "properties": {
+    "connectivity": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "lwm2mServer": {
+          "type": "boolean",
+          "title": "Enable Access to LWM2M Server",
+          "default": false
+        },
+        "bootstrapServer": {
+          "type": "boolean",
+          "title": "Enable Access to Bootstrap Server",
+          "default": false
+        }
+      },
+      "dependencies": {
+        "lwm2mServer": {
+          "oneOf": [
+            {
+              "properties": {
+                "lwm2mServer": {
+                  "const": false
+                }
+              }
+            },
+            {
+              "properties": {
+                "lwm2mServer": {
+                  "const": true
+                },
+                "lwm2mSConnectivity": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "title": "LWM2M Connectivity Settings",
+                  "properties": {
+                    "lwm2mSecurityMode": {
+                      "default": "NO_SEC",
+                      "type": "string",
+                      "title": "Security mode",
+                      "oneOf": [
+                        {
+                          "title": "NO_SEC",
+                          "const": "NO_SEC"
+                        },
+                        {
+                          "title": "PSK",
+                          "const": "PSK"
+                        }
+                      ]
+                    }
+                  },
+                  "dependencies": {
+                    "lwm2mSecurityMode": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lwm2mSecurityMode": {
+                              "const": "NO_SEC",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "lwm2mSecurityMode": {
+                              "const": "PSK",
+                              "type": "string"
+                            },
+                            "publicKeyOrId": {
+                              "type": "string",
+                              "title": "PSK ID"
+                            },
+                            "secretKey": {
+                              "pattern": "^([a-fA-F0-9]{2})+$",
+                              "examples": [
+                                "0123456789abcdef"
+                              ],
+                              "type": "string",
+                              "title": "LWM2M Pre-shared key"
+                            }
+                          },
+                          "required": [
+                            "publicKeyOrId",
+                            "secretKey"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "bootstrapServer": {
+          "oneOf": [
+            {
+              "properties": {
+                "bootstrapServer": {
+                  "const": false
+                }
+              }
+            },
+            {
+              "properties": {
+                "bootstrapServer": {
+                  "const": true
+                },
+                "boostrapConnectivity": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "title": "Bootstrap Connectivity",
+                  "properties": {
+                    "workMode": {
+                      "default": "NO_SEC",
+                      "type": "string",
+                      "title": "Work mode",
+                      "oneOf": [
+                        {
+                          "title": "X.509",
+                          "const": "X.509"
+                        },
+                        {
+                          "title": "Simple",
+                          "const": "Simple"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "bootstrapConfigParams": {
+                  "$schema": "https://json-schema.org/draft/2020-12/schema",
+                  "type": "object",
+                  "title": "Bootstrap Configuration Parameters written to Device",
+                  "properties": {
+                    "serverPublicKey": {
+                      "type": "string",
+                      "title": "LWM2M Server URI"
+                    },
+                    "bootstrapSecurityMode": {
+                      "default": "NO_SEC",
+                      "type": "string",
+                      "title": "Security mode",
+                      "oneOf": [
+                        {
+                          "title": "NO_SEC",
+                          "const": "NO_SEC"
+                        },
+                        {
+                          "title": "PSK",
+                          "const": "PSK"
+                        }
+                      ]
+                    }
+                  },
+                  "dependencies": {
+                    "bootstrapSecurityMode": {
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "bootstrapSecurityMode": {
+                              "const": "NO_SEC",
+                              "type": "string"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "bootstrapSecurityMode": {
+                              "const": "PSK",
+                              "type": "string"
+                            },
+                            "publicKeyOrId": {
+                              "type": "string",
+                              "title": "Server Public Key"
+                            },
+                            "secretKey": {
+                              "pattern": "^([a-fA-F0-9]{2})+$",
+                              "examples": [
+                                "0123456789abcdef"
+                              ],
+                              "type": "string",
+                              "title": "Secret key"
+                            }
+                          },
+                          "required": [
+                            "publicKeyOrId",
+                            "secretKey"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "required": [
+    "connectivity"
+  ]
+}
