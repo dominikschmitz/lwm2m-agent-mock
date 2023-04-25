@@ -3,6 +3,10 @@
   "title": "Firmware settings",
   "type": "object",
   "properties": {
+    "icon": {
+      "type": "string",
+      "const": "software"
+    },
     "fwUpdateDeliveryMethod": {
       "title": "Update delivery method",
       "type": "string",

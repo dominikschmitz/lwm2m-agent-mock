@@ -3,6 +3,10 @@
   "title": "Request handling",
   "type": "object",
   "properties": {
+    "icon": {
+      "type": "string",
+      "const": "workflow"
+    },
     "lwm2mRequestTimeout": {
       "title": "LWM2M request timeout",
       "type": "number",

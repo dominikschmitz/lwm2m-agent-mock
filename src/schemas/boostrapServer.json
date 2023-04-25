@@ -3,6 +3,10 @@
   "type": "object",
   "title": "Bootstrap Server",
   "properties": {
+    "icon": {
+        "type": "string",
+        "const": "root-server"
+      },
       "security": {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "type": "object",
