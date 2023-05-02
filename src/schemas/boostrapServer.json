@@ -1,83 +1,103 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object",
-  "title": "Bootstrap Server",
-  "properties": {
-    "icon": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "title": "Bootstrap Server",
+    "properties": {
+      "icon": {
         "type": "string",
         "const": "root-server"
       },
-      "security": {
-          "$schema": "https://json-schema.org/draft/2020-12/schema",
-          "type": "object",
-          "properties": {
-                "serverPublicKey": {
-                    "type": "string",
-                    "title": "Server public key"
-                },
-                "securityMode": {
-                  "default": "NO_SEC",
-                  "type": "string",
-                  "title": "Security mode",
-                  "oneOf": [
-                    {
-                      "title": "NO_SEC",
-                      "const": "NO_SEC"
-                    },
-                    {
-                      "title": "PSK",
-                      "const": "PSK"
-                    }
-                  ]
-                },
-                "boostrapShortServerId": {
-                    "type": "number",
-                    "title": "Short Server ID"
-                }
-          },
-          "dependencies": {
-              "securityMode": {
-                  "oneOf": [
-                      {
-                          "type": "object",
-                          "properties": {
-                              "securityMode": {
-                                  "const": "NO_SEC",
-                                  "type": "string"
-                              }
-                          }
-                      },
-                      {
-                          "type": "object",
-                          "properties": {
-                              "securityMode": {
-                                  "const": "PSK",
-                                  "type": "string"
-                              },
-                              "bootstrapId": {
-                                  "type": "string",
-                                  "title": "Bootstrap PSK ID"
-                              },
-                              "bootstrapKey": {
-                                  "pattern": "^([a-fA-F0-9]{2})+$",
-                                  "examples": [
-                                      "0123456789abcdef"
-                                  ],
-                                  "type": "string",
-                                  "title": "Bootstrap pre-shared key"
-                              }
-                          },
-                          "required": [
-                              "bootstrapId",
-                              "bootstrapKey"
-                          ]
-                      }
-                  ]
+      "boostrapConnectivity": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "title": "Bootstrap Connectivity",
+        "properties": {
+          "workMode": {
+            "default": "X.509",
+            "type": "string",
+            "title": "Work mode",
+            "oneOf": [
+              {
+                "title": "X.509",
+                "const": "X.509"
+              },
+              {
+                "title": "Simple",
+                "const": "Simple"
               }
+            ]
           }
+        }
+      },
+      "bootstrapConfigParams": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
+        "type": "object",
+        "title": "Bootstrap Configuration Parameters written to Device",
+        "properties": {
+          "serverPublicKey": {
+            "type": "string",
+            "title": "LWM2M Server URI"
+          },
+          "bootstrapSecurityMode": {
+            "default": "NO_SEC",
+            "type": "string",
+            "title": "Security mode",
+            "oneOf": [
+              {
+                "title": "NO_SEC",
+                "const": "NO_SEC"
+              },
+              {
+                "title": "PSK",
+                "const": "PSK"
+              }
+            ]
+          }
+        },
+        "dependencies": {
+          "bootstrapSecurityMode": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "bootstrapSecurityMode": {
+                    "const": "NO_SEC",
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "bootstrapSecurityMode": {
+                    "const": "PSK",
+                    "type": "string"
+                  },
+                  "publicKeyOrId": {
+                    "type": "string",
+                    "title": "Server Public Key"
+                  },
+                  "secretKey": {
+                    "pattern": "^([a-fA-F0-9]{2})+$",
+                    "examples": [
+                      "0123456789abcdef"
+                    ],
+                    "type": "string",
+                    "title": "Secret key"
+                  }
+                },
+                "required": [
+                  "publicKeyOrId",
+                  "secretKey"
+                ]
+              }
+            ]
+          }
+        }
       }
-  },
-  "required": [
-      "security"
-  ]
-}
+    },
+    "required": [
+      "bootstrapConnectivity",
+      "bootstrapConfigParams"
+    ]
+  }

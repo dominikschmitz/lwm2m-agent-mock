@@ -22,13 +22,16 @@
 			"type": "number"
     },
     "enableResourceLevelTimestamp": {
-      "title": "Use common timestamp resources 5518 and 6050 or object specific timestamp for object 6 reported by the device if available",
+      "title": "Use common timestamp",
+      "description": "Use common timestamp resources 5518 and 6050 or object specific timestamp for object 6 reported by the device if available.", 
       "type": "boolean",
 			"default": false
     },
     "genericUIRetainOldValuesIfError": {
-      "title": "Keep old values in the objects tab if an operation fails",
-      "type": "string"
+      "title": "Keep old values",
+      "description": "Keep old values in the objects tab if an operation fails.",
+      "type": "boolean",
+      "default": false
     },
     "binaryDeliveryEncoding": {
       "title": "Binary delivery encoding",
@@ -46,8 +49,31 @@
 			]
     },
     "serializationFormat": {
-      "title": "Serialization Format",
-      "type": "string"
+      "title": "Serialization format",
+      "default": "TEXT",
+			"type": "string",
+			"oneOf": [
+				{
+					"title": "TLV",
+					"const": "TLV"
+				},
+        {
+					"title": "JSON",
+					"const": "JSON"
+				},
+        {
+					"title": "TEXT",
+					"const": "TEXT"
+				},
+        {
+					"title": "SENML JSON",
+					"const": "SENML_JSON"
+				},
+        {
+					"title": "SENML CBOR",
+					"const": "SENML_CBOR"
+				}
+			]
     }
   }
 }

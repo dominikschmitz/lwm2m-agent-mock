@@ -38,7 +38,7 @@ export async function createDatabase() {
     db = new LowWithLodash(adapter);
     await db.read();
   
-    db.data ||= { devices: [{ id: "191203", fwUpdateDeliveryMethod: "BOTH", fwUpdateSupportedDeviceProtocol: "HTTPS" }] }
+    db.data ||= { devices: [{ id: "191203", fwUpdateDeliveryMethod: "BOTH", fwUpdateSupportedDeviceProtocol: "HTTPS", lwm2mRequestTimeout: null }] }
   
     await db.write();
     console.log('=== lowdb connected ===');

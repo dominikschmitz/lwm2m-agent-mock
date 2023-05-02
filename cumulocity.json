@@ -1,7 +1,6 @@
 {
   "apiVersion": "1",
-  "version": "1.0.10-SNAPSHOT",
-  "contextPath": "lwm2m-agent-mock-key",
+  "version": "1.0.18-SNAPSHOT",
   "provider": {
       "name": "Cumulocity"
   },

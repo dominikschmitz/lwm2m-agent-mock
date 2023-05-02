@@ -1,6 +1,6 @@
 {
   "name": "lwm2m-agent-mock",
-  "version": "1.0.10",
+  "version": "1.0.18",
   "description": "node.js microservice to mock configuration UI endpoints for lwm2m",
   "main": "./dist/server.js",
   "scripts": {

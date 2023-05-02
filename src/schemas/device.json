@@ -10,7 +10,8 @@
     },
     "endpointId": {
       "title": "Endpoint client ID",
-      "type": "string"
+      "type": "string",
+      "examples": ["urn:imei:012345678901234"]
     }
   }
 }
