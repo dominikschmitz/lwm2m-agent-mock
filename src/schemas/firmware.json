@@ -7,63 +7,68 @@
       "type": "string",
       "const": "software"
     },
-    "fwUpdateDeliveryMethod": {
-      "title": "Update delivery method",
-      "type": "string",
-      "oneOf": [
-        {
-          "title": "Pull",
-          "const": "PULL"
+    "firmwareSettings": {
+      "type": "object",
+      "properties": {
+        "fwUpdateDeliveryMethod": {
+          "title": "Update delivery method",
+          "type": "string",
+          "oneOf": [
+            {
+              "title": "Pull",
+              "const": "PULL"
+            },
+            {
+              "title": "Push",
+              "const": "PUSH"
+            },
+            {
+              "title": "Both",
+              "const": "BOTH"
+            }
+          ]
         },
-        {
-          "title": "Push",
-          "const": "PUSH"
+        "fwUpdateSupportedDeviceProtocol": {
+          "title": "Update supported device protocol",
+          "type": "string",
+          "oneOf": [
+            {
+              "title": "Coap",
+              "const": "COAP"
+            },
+            {
+              "title": "Coaps",
+              "const": "COAPS"
+            },
+            {
+              "title": "Http",
+              "const": "HTTP"
+            },
+            {
+              "title": "Https",
+              "const": "HTTPS"
+            }
+          ]
         },
-        {
-          "title": "Both",
-          "const": "BOTH"
+        "fwUpdateResetMechanism": {
+          "title": "Update reset mechanism",
+          "type": "string",
+          "oneOf": [
+            {
+              "title": "Package",
+              "const": "PACKAGE"
+            },
+            {
+              "title": "Package uri",
+              "const": "PACKAGE URI"
+            }
+          ]
+        },
+        "fwUpdateURL": {
+          "title": "Update URL",
+          "type": "string"
         }
-      ]
-    },
-    "fwUpdateSupportedDeviceProtocol": {
-      "title": "Update supported device protocol",
-      "type": "string",
-      "oneOf": [
-        {
-          "title": "Coap",
-          "const": "COAP"
-        },
-        {
-          "title": "Coaps",
-          "const": "COAPS"
-        },
-        {
-          "title": "Http",
-          "const": "HTTP"
-        },
-        {
-          "title": "Https",
-          "const": "HTTPS"
-        }
-      ]
-    },
-    "fwUpdateResetMechanism": {
-      "title": "Update reset mechanism",
-      "type": "string",
-      "oneOf": [
-        {
-          "title": "Package",
-          "const": "PACKAGE"
-        },
-        {
-          "title": "Package uri",
-          "const": "PACKAGE URI"
-        }
-      ]
-    },
-    "fwUpdateURL": {
-      "title": "Update URL",
-      "type": "string"
+      }
     }
   }
 }

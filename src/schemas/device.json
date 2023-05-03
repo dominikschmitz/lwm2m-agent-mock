@@ -2,16 +2,22 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Device Settings",
   "type": "object",
-  "required": ["endpointId"],
   "properties": {
     "icon": {
       "type": "string",
       "const": "devices"
     },
-    "endpointId": {
-      "title": "Endpoint client ID",
-      "type": "string",
-      "examples": ["urn:imei:012345678901234"]
+    "deviceSettings": {
+      "type": "object",
+      "required": ["endpointId"],
+      "properties": {
+        "endpointId": {
+          "title": "Endpoint client ID",
+          "type": "string",
+          "examples": ["urn:imei:012345678901234"]
+        }
+      }
     }
+    
   }
 }
